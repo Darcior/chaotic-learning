@@ -66,5 +66,3 @@ ax3.set_xlim(0., twopi)
 plt.tight_layout()
 plt.show()
 
-import nolds
-nolds.lyap_r(psoln[:,0])
