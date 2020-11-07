@@ -29,11 +29,11 @@ def plotphase(A,B,C,D,E):
      qww = qn.mle(u)
      return np.amax(qww)
 
-a = np.linspace(1,10,num = 4)
-b = np.linspace(1,50, num = 4)
-c = np.linspace(0.02, 5, num=4)
-d = np.linspace(1,25, num = 4)
-e = np.linspace(0.5, 12, num = 8)
+a = np.linspace(1,50,num = 10)
+b = np.linspace(1,250, num = 10)
+c = np.linspace(0.02, 25, num=10)
+d = np.linspace(1,125, num = 10)
+e = np.linspace(0.5, 60, num = 10)
 z=0
 n = np.zeros(99999)
 for i in a:
