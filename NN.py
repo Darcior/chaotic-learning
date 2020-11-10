@@ -8,7 +8,13 @@ import numpy as np
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
-from keras import input_shape
+from pandas import read_csv
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.wrappers.scikit_learn import KerasClassifier
+from sklearn.model_selection import cross_val_score
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import StratifiedKFold
 matrix = np.loadtxt('param.txt', dtype = 'f')
 embd = np.zeros( (2048, 5) )
  
@@ -23,7 +29,20 @@ for i in range(2048):
 
 X_train , X_test, y_train,  y_test = train_test_split(embd, target, random_state=44, train_size = 0.2)
 
-model = keras.Sequential([keras.layers.Flatten(input_shape (28,28)),
-                keras.layers.Dense(128,activation = tf.nn.sigmoid),                          
-                keras.layers.Dense(10,activation = tf.nn.softmax)])
-model.compile(optimizer = 'adam',loss='sparse_categorical_crossentropy',metrics =['accuracy'])
+encoder = LabelEncoder()
+encoder.fit(target)
+encoded_Y = encoder.transform(target)
+
+def create_baseline():
+	# create model
+	model = Sequential()
+	model.add(Dense(5, input_dim=5, activation='relu'))
+	model.add(Dense(1, activation='sigmoid'))
+	# Compile model
+	model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+	return model
+# evaluate model with standardized dataset
+estimator = KerasClassifier(build_fn=create_baseline, epochs=100, batch_size=5, verbose=0)
+kfold = StratifiedKFold(n_splits=10, shuffle=True)
+results = cross_val_score(estimator, matrix, encoded_Y, cv=kfold)
+print("Baseline: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))

@@ -17,7 +17,7 @@ for i in range(2048):
     else:
         target[i]=0    
 
-X_train , X_test, y_train,  y_test = train_test_split(embd, target, random_state=44, train_size = 0.2)
+X_train , X_test, y_train,  y_test = train_test_split(matrix, target, random_state=44, train_size = 0.2)
 
 clf = LogisticRegression().fit(X_train, y_train)
 clf2 = clf.predict(X_test)
