@@ -17,7 +17,7 @@ for i in range(2048):
     else:
         target[i]=0    
 
-X_train , X_test, y_train,  y_test = train_test_split(matrix, target, random_state=44, train_size = 0.2)
+X_train , X_test, y_train,  y_test = train_test_split(matrix, target, random_state=44, train_size = 0.8)
 
 clf = LogisticRegression().fit(X_train, y_train)
 clf2 = clf.predict(X_test)
@@ -25,4 +25,4 @@ from sklearn.metrics import f1_score
 print(f1_score(y_test, clf2, average='micro'))
 clf4 = LogisticRegression(max_iter = 2000).fit(X_train, y_train)
 clf5 = clf4.predict(X_test)
-print(f1_score(y_test, clf5, average='micro'))
+print(clf4.score(X_test, y_test))
