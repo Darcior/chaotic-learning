@@ -5,10 +5,6 @@ Created on Sun Nov  8 14:46:03 2020
 @author: admin
 """
 import numpy as np
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras import layers
-from pandas import read_csv
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.wrappers.scikit_learn import KerasClassifier
@@ -19,7 +15,7 @@ matrix = np.loadtxt('param.txt', dtype = 'f')
 embd = np.zeros( (2048, 5) )
  
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
+
 target = np.loadtxt('data.txt', dtype = 'f')
 for i in range(2048):
     if target[i] > 0:
