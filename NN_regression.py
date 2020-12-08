@@ -5,26 +5,20 @@ Created on Tue Nov 10 16:31:03 2020
 @author: admin
 """
 import numpy as np
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras import layers
+
 from pandas import read_csv
 from keras.models import Sequential
 from keras.layers import Dense
-from keras.wrappers.scikit_learn import KerasClassifier
+
 from sklearn.model_selection import cross_val_score
-from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import StratifiedKFold
-from pandas import read_csv
-from keras.models import Sequential
-from keras.layers import Dense
+
+
 from keras.wrappers.scikit_learn import KerasRegressor
-from sklearn.model_selection import cross_val_score
+
 from sklearn.model_selection import KFold
 matrix = np.loadtxt('param.txt', dtype = 'f')
 
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
+
 target = np.loadtxt('data.txt', dtype = 'f')
 
 
