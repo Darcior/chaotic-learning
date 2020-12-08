@@ -14,16 +14,16 @@ embd = np.zeros( (2048, 5) )
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 target = np.loadtxt('data.txt', dtype = 'f')
-for i in range(2048):
+for i in range(2048):        #labelling the dataset
     if target[i] > 0:
         target[i]=1
     else:
         target[i]=0    
 
-X_train , X_test, y_train,  y_test = train_test_split(embd, target, random_state=44, train_size = 0.2)
+X_train , X_test, y_train,  y_test = train_test_split(matrix, target, random_state=44, train_size = 0.2)
 
 from sklearn.neighbors import KNeighborsClassifier
-classifier = KNeighborsClassifier(n_neighbors=5)
+classifier = KNeighborsClassifier(n_neighbors=10) 
 classifier.fit(X_train, y_train)
 
 y_pred = classifier.predict(X_test)
